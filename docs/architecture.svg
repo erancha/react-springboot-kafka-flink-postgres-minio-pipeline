@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-  <!-- Define styles -->
   <defs>
     <style>
       .box { fill: #f5f5f5; stroke: #333; stroke-width: 2; }
@@ -14,148 +14,116 @@
       .data-arrow { stroke: #4ecdc4; stroke-width: 2; fill: none; marker-end: url(#arrowhead-teal); }
     </style>
     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+      <polygon points="0 0, 10 3, 0 6" fill="#333"/>
     </marker>
     <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#ff6b6b" />
+      <polygon points="0 0, 10 3, 0 6" fill="#ff6b6b"/>
     </marker>
     <marker id="arrowhead-teal" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#4ecdc4" />
+      <polygon points="0 0, 10 3, 0 6" fill="#4ecdc4"/>
     </marker>
   </defs>
-
-  <!-- Background -->
   <rect width="1200" height="800" fill="#ffffff"/>
-
-  <!-- Title -->
-  <text x="600" y="30" class="title" text-anchor="middle" font-size="20">Real-time Data Pipeline Architecture</text>
-
-  <!-- INGESTION LAYER -->
+  <text x="600" y="30" class="title" text-anchor="middle" font-size="20" style="white-space: pre;">Real-time Data Pipeline Architecture</text>
   <g id="ingestion-layer">
-    <!-- React UI -->
     <rect x="50" y="80" width="140" height="80" class="ingestion" rx="5"/>
-    <text x="120" y="110" class="title" text-anchor="middle">React UI</text>
-    <text x="120" y="130" class="subtitle" text-anchor="middle">Port 3000</text>
-    <text x="120" y="150" class="subtitle" text-anchor="middle">Events</text>
-
-    <!-- Spring Boot API -->
+    <text x="120" y="110" class="title" text-anchor="middle" style="white-space: pre;">React UI</text>
+    <text x="120" y="130" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 3000</text>
+    <text x="120" y="150" class="subtitle" text-anchor="middle" style="white-space: pre;">Events</text>
     <rect x="330" y="80" width="140" height="80" class="ingestion" rx="5"/>
-    <text x="400" y="110" class="title" text-anchor="middle">Spring Boot</text>
-    <text x="400" y="130" class="subtitle" text-anchor="middle">API</text>
-    <text x="400" y="150" class="subtitle" text-anchor="middle">Port 8080</text>
-
-    <!-- Arrow: UI -> Backend -->
+    <text x="400" y="110" class="title" text-anchor="middle" style="white-space: pre;">Spring Boot</text>
+    <text x="400" y="130" class="subtitle" text-anchor="middle" style="white-space: pre;">API</text>
+    <text x="400" y="150" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8080</text>
     <path d="M 190 120 L 330 120" class="arrow"/>
-    <text x="210" y="115" class="subtitle">POST /api/events</text>
+    <text x="210" y="115" class="subtitle" style="white-space: pre;">POST /api/events</text>
   </g>
-
-  <!-- KAFKA LAYER -->
-  <g id="kafka-layer">
-    <!-- Kafka -->
-    <rect x="200" y="240" width="200" height="100" class="service-box" rx="5"/>
-    <text x="300" y="270" class="title" text-anchor="middle">Apache Kafka</text>
-    <text x="300" y="295" class="subtitle" text-anchor="middle">KRaft Mode (no ZooKeeper)</text>
-    <text x="300" y="320" class="subtitle" text-anchor="middle">Topic: events</text>
-
-    <!-- Kafka UI -->
-    <rect x="480" y="260" width="120" height="60" class="box" rx="5"/>
-    <text x="540" y="290" class="title" text-anchor="middle">Kafka UI</text>
-    <text x="540" y="310" class="subtitle" text-anchor="middle">Port 8088</text>
-
-    <!-- Arrow: Backend -> Kafka -->
-    <path d="M 400 160 L 300 240" class="event-arrow"/>
-    <text x="340" y="205" class="subtitle" fill="#ff6b6b">JSON Events</text>
-
-    <!-- Arrow: Kafka -> Kafka UI -->
-    <path d="M 400 290 L 480 290" class="arrow"/>
+  <rect x="200" y="240" width="200" height="100" class="service-box" rx="5"/>
+  <text x="300" y="270" class="title" text-anchor="middle" style="white-space: pre;">Apache Kafka</text>
+  <text x="300" y="295" class="subtitle" text-anchor="middle" style="white-space: pre;">KRaft Mode (no ZooKeeper)</text>
+  <text x="300" y="320" class="subtitle" text-anchor="middle" style="white-space: pre;">Topic: events</text>
+  <rect x="480" y="260" width="120" height="60" class="box" rx="5"/>
+  <text x="540" y="290" class="title" text-anchor="middle" style="white-space: pre;">Kafka UI</text>
+  <text x="540" y="310" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8088</text>
+  <path d="M 400 160 L 300 240" class="event-arrow"/>
+  <text x="361.32" y="209.061" class="subtitle" fill="#ff6b6b" style="white-space: pre; font-size: 12px;" transform="matrix(1, -0.717421, 0, 1, -23.350254, 281.025787)">JSON Events</text>
+  <path d="M 400 290 L 480 290" class="arrow"/>
+  <g transform="matrix(1, 0, 0, 1, -4.060914, 17.258883)">
+    <g>
+      <g>
+        <rect x="38.274" y="455.076" width="97.361" height="74.924" class="service-box" rx="5" style=""/>
+      </g>
+    </g>
+    <text x="90" y="480" class="title" text-anchor="middle" style="white-space: pre;">Flink</text>
+    <text x="90" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">JobManager</text>
+    <text x="90" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8081</text>
   </g>
-
-  <!-- FLINK LAYER -->
-  <g id="flink-layer">
-    <!-- Flink JobManager -->
-    <rect x="20" y="450" width="140" height="80" class="service-box" rx="5"/>
-    <text x="90" y="480" class="title" text-anchor="middle">Flink</text>
-    <text x="90" y="500" class="subtitle" text-anchor="middle">JobManager</text>
-    <text x="90" y="520" class="subtitle" text-anchor="middle">Port 8081</text>
-
-    <!-- Flink TaskManager -->
-    <rect x="420" y="450" width="140" height="80" class="service-box" rx="5"/>
-    <text x="490" y="480" class="title" text-anchor="middle">Flink</text>
-    <text x="490" y="500" class="subtitle" text-anchor="middle">TaskManager</text>
-    <text x="490" y="520" class="subtitle" text-anchor="middle">2 task slots</text>
-
-    <!-- StreamingJob -->
-    <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5"/>
-    <text x="290" y="395" class="title" text-anchor="middle">StreamingJob</text>
-    <text x="290" y="415" class="subtitle" text-anchor="middle">(Kafka → Route → Sinks)</text>
-
-    <!-- Arrow: Kafka -> Flink -->
-    <path d="M 300 340 L 290 370" class="arrow"/>
-    <text x="315" y="355" class="subtitle">consume</text>
+  <g transform="matrix(1, 0, 0, 1, -45.68528, 20.304567)">
+    <g>
+      <g>
+        <g>
+          <g>
+            <g>
+              <rect x="420" y="450" width="140" height="80" class="service-box" rx="5"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <text x="490" y="480" class="title" text-anchor="middle" style="white-space: pre;">Flink</text>
+    <text x="490" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">TaskManager</text>
+    <text x="490" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">2 task slots</text>
   </g>
-
-  <!-- SINK LAYER - MinIO -->
-  <g id="sink-minio">
-    <!-- MinIO -->
-    <rect x="50" y="600" width="140" height="100" class="sink" rx="5"/>
-    <text x="120" y="630" class="title" text-anchor="middle">MinIO</text>
-    <text x="120" y="655" class="subtitle" text-anchor="middle">S3-compatible</text>
-    <text x="120" y="675" class="subtitle" text-anchor="middle">Bucket: images</text>
-    <text x="120" y="695" class="subtitle" text-anchor="middle">Ports 9000/9001</text>
-
-    <!-- Arrow: Flink -> MinIO (IMAGE events) -->
-    <path d="M 200 420 Q 150 500 120 600" class="data-arrow"/>
-    <text x="140" y="500" class="subtitle" fill="#4ecdc4" font-weight="bold">IMAGE events</text>
+  <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5"/>
+  <text x="290" y="395" class="title" text-anchor="middle" style="white-space: pre;">StreamingJob</text>
+  <text x="290" y="415" class="subtitle" text-anchor="middle" style="white-space: pre;">(Kafka → Route → Sinks)</text>
+  <path d="M 300 340 L 290 370" class="arrow"/>
+  <text x="315" y="355" class="subtitle" style="white-space: pre;">consume</text>
+  <rect x="50" y="600" width="140" height="100" class="sink" rx="5"/>
+  <text x="120" y="630" class="title" text-anchor="middle" style="white-space: pre;">MinIO</text>
+  <text x="120" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">S3-compatible</text>
+  <text x="120" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Bucket: images</text>
+  <text x="120" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Ports 9000/9001</text>
+  <path d="M 200 420 Q 150 500 120 600" class="data-arrow"/>
+  <text x="82.132" y="453.3" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">IMAGE events</text>
+  <rect x="300" y="600" width="140" height="100" class="sink" rx="5"/>
+  <text x="370" y="630" class="title" text-anchor="middle" style="white-space: pre;">PostgreSQL</text>
+  <text x="370" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">Database: warehouse</text>
+  <text x="370" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Table: processed_events</text>
+  <text x="370" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 5432</text>
+  <path d="M 320 420 Q 350 500 370 600" class="data-arrow"/>
+  <text x="336.954" y="453.299" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">DATA events</text>
+  <g transform="matrix(1, 0, 0, 1, 34.517765, -1.015228)">
+    <g id="legend">
+      <rect x="550" y="400" width="600" height="320" fill="none" stroke="#ccc" stroke-width="1" rx="5"/>
+      <text x="570" y="425" class="title" style="white-space: pre;">Event Types &amp; Routing</text>
+      <rect x="570" y="450" width="270" height="142.183" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3" style=""/>
+      <text x="590" y="475" class="title" style="white-space: pre;">DATA Event</text>
+      <text x="590" y="500" class="text" style="white-space: pre;">{ eventType: "DATA",</text>
+      <text x="590" y="520" class="text" style="white-space: pre;">payload: { ... } }</text>
+      <text x="590" y="545" class="subtitle" style="white-space: pre;">↓ Stored in PostgreSQL</text>
+      <text x="590" y="565" class="subtitle" style="white-space: pre;">✓ Normalized payload</text>
+      <text x="590" y="585" class="subtitle" style="white-space: pre;">✓ event_time, source indexed</text>
+      <rect x="871.168" y="450" width="258.832" height="139.137" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3" style=""/>
+      <text x="880" y="475" class="title" style="white-space: pre;">IMAGE Event</text>
+      <text x="880" y="500" class="text" style="white-space: pre;">{ eventType: "IMAGE",</text>
+      <text x="880" y="520" class="text" style="white-space: pre;">  imageUrl: "..." }</text>
+      <text x="880" y="545" class="subtitle" style="white-space: pre;">↓ Stored in MinIO</text>
+      <text x="880" y="565" class="subtitle" style="white-space: pre;">✓ Path: images/{date}/{id}</text>
+      <text x="880" y="585" class="subtitle" style="white-space: pre;">✓ Fetched from URL</text>
+      <g/>
+      <g transform="matrix(1, 0, 0, 1, -1.015228, 11.167513)">
+        <rect x="570" y="600" width="560" height="100" fill="#f0f8ff" stroke="#0066cc" stroke-width="1" rx="3"/>
+        <text x="590" y="625" class="title" fill="#0066cc" style="white-space: pre;">Data Flow &amp; Key Points</text>
+        <text x="590" y="650" class="text" style="white-space: pre;">• Partition key: event id → ordering preserved per event, parallelism across events</text>
+        <text x="590" y="670" class="text" style="white-space: pre;">• Backend validates structure; Flink handles runtime processing/failures</text>
+        <text x="590" y="690" class="text" style="white-space: pre;">• Both sinks write idempotently: Postgres unique constraint + MinIO key-based</text>
+      </g>
+    </g>
   </g>
-
-  <!-- SINK LAYER - PostgreSQL -->
-  <g id="sink-postgres">
-    <!-- PostgreSQL -->
-    <rect x="300" y="600" width="140" height="100" class="sink" rx="5"/>
-    <text x="370" y="630" class="title" text-anchor="middle">PostgreSQL</text>
-    <text x="370" y="655" class="subtitle" text-anchor="middle">Database: warehouse</text>
-    <text x="370" y="675" class="subtitle" text-anchor="middle">Table: processed_events</text>
-    <text x="370" y="695" class="subtitle" text-anchor="middle">Port 5432</text>
-
-    <!-- Arrow: Flink -> PostgreSQL (DATA events) -->
-    <path d="M 320 420 Q 350 500 370 600" class="data-arrow"/>
-    <text x="340" y="500" class="subtitle" fill="#4ecdc4" font-weight="bold">DATA events</text>
-  </g>
-
-  <!-- EVENT TYPES LEGEND -->
-  <g id="legend">
-    <rect x="550" y="400" width="600" height="320" fill="none" stroke="#ccc" stroke-width="1" rx="5"/>
-    <text x="570" y="425" class="title">Event Types &amp; Routing</text>
-
-    <!-- DATA Event -->
-    <rect x="570" y="450" width="270" height="130" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3"/>
-    <text x="590" y="475" class="title">DATA Event</text>
-    <text x="590" y="500" class="text">{ eventType: "DATA",</text>
-    <text x="590" y="520" class="text">  payload: { ... } }</text>
-    <text x="590" y="545" class="subtitle">↓ Stored in PostgreSQL</text>
-    <text x="590" y="565" class="subtitle">✓ Normalized payload</text>
-    <text x="590" y="585" class="subtitle">✓ event_time, source indexed</text>
-
-    <!-- IMAGE Event -->
-    <rect x="860" y="450" width="270" height="130" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3"/>
-    <text x="880" y="475" class="title">IMAGE Event</text>
-    <text x="880" y="500" class="text">{ eventType: "IMAGE",</text>
-    <text x="880" y="520" class="text">  imageUrl: "..." }</text>
-    <text x="880" y="545" class="subtitle">↓ Stored in MinIO</text>
-    <text x="880" y="565" class="subtitle">✓ Path: images/{date}/{id}</text>
-    <text x="880" y="585" class="subtitle">✓ Fetched from URL</text>
-
-    <!-- Data Flow Notes -->
-    <rect x="570" y="600" width="560" height="100" fill="#f0f8ff" stroke="#0066cc" stroke-width="1" rx="3"/>
-    <text x="590" y="625" class="title" fill="#0066cc">Data Flow &amp; Key Points</text>
-    <text x="590" y="650" class="text">• Partition key: event id → ordering preserved per event, parallelism across events</text>
-    <text x="590" y="670" class="text">• Backend validates structure; Flink handles runtime processing/failures</text>
-    <text x="590" y="690" class="text">• Both sinks write idempotently: Postgres unique constraint + MinIO key-based</text>
-  </g>
-
-  <!-- Component Details (right side) -->
-  <g id="details">
-    <text x="50" y="740" class="title">Technology Stack</text>
-    <text x="50" y="765" class="text">Backend: Spring Boot 3.3.3 (Java 21) | Frontend: React 18 + Vite | Flink: 1.18.1 (Java 17) | All: Docker Compose</text>
+  <g transform="matrix(1, 0, 0, 1, -28.426395, 17.258883)">
+    <g id="details">
+      <text x="50" y="740" class="title" style="white-space: pre;">Technology Stack</text>
+      <text x="50" y="765" class="text" style="white-space: pre;">Backend: Spring Boot 3.3.3 (Java 21) | Frontend: React 18 + Vite | Flink: 1.18.1 (Java 17) | All: Docker Compose</text>
+    </g>
   </g>
 </svg>
