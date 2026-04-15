@@ -43,14 +43,8 @@
     <text x="300" y="295" class="subtitle" text-anchor="middle" style="white-space: pre;">KRaft Mode (no ZooKeeper)</text>
     <text x="300" y="320" class="subtitle" text-anchor="middle" style="white-space: pre;">Topic: events</text>
   </g>
-  <g transform="matrix(1, 0, 0, 1, 422.335022, -188.832489)">
-    <rect x="480" y="260" width="120" height="60" class="box" rx="5"/>
-    <text x="540" y="290" class="title" text-anchor="middle" style="white-space: pre;">Kafka UI</text>
-    <text x="540" y="310" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8088</text>
-  </g>
   <path d="M 621.827 118.173 L 471.066 119.391" class="event-arrow" style="transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000053, 0.000011)"/>
   <text x="361.32" y="209.061" class="subtitle" fill="#ff6b6b" style="white-space: pre; font-size: 12px; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(1.230597, 0.018037, -0.59477, 0.803896, 147.208115, -94.497818)">JSON Events</text>
-  <path d="M 822.335 109.289 L 902.335 109.289" class="arrow"/>
   <g transform="matrix(1, 0, 0, 1, 505.58374, -160.406082)">
     <g>
       <g>
