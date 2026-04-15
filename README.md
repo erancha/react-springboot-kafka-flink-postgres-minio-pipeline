@@ -91,6 +91,8 @@ Access it at http://localhost:3001 (user: `admin`, pass: `admin`). Then open:
 
 - Dashboards -> Browse -> **Processed Events Analytics**
 
+![Grafana dashboard screenshot](docs/Grafana.jpg)
+
 ## Notes / decisions
 
 - Events are serialized as JSON strings in Kafka. (To view events: see [Architecture](#architecture) and open Kafka UI topic `events`.)
