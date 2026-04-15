@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 type EventType = 'DATA' | 'IMAGE';
 
@@ -10,6 +10,12 @@ export default function App() {
   const [result, setResult] = useState<string>('');
   const [busy, setBusy] = useState<boolean>(false);
   const [sendCount, setSendCount] = useState<number>(1);
+
+  useEffect(() => {
+    if (eventType !== 'IMAGE') return;
+    if (sendCount === 1 || sendCount === 10 || sendCount === 100) return;
+    setSendCount(1);
+  }, [eventType, sendCount]);
 
   const canSubmit = useMemo(() => {
     if (eventType === 'DATA') return true;
@@ -99,6 +105,12 @@ export default function App() {
             <option value='1'>1</option>
             <option value='10'>10</option>
             <option value='100'>100</option>
+            {eventType !== 'IMAGE' && (
+              <>
+                <option value='1000'>1,000</option>
+                <option value='10000'>10,000</option>
+              </>
+            )}
           </select>
         </label>
 

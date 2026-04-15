@@ -29,9 +29,9 @@ This project is a local, Docker Compose–based real-time data pipeline:
 - Backend API: http://localhost:8080
 - Kafka UI: http://localhost:8088
 - Flink UI: http://localhost:8081
-- Grafana: http://localhost:3001 (user: `admin`, pass: `admin`)
 - MinIO Console: http://localhost:9001 (user: `minio`, pass: `minio123`)
 - Postgres: localhost:5432 (db: `warehouse`, user: `postgres`, pass: `postgres`)
+- Grafana: http://localhost:3001 (user: `admin`, pass: `admin`)
 
 ## How to run
 
@@ -123,6 +123,8 @@ Flink windowing/real-time aggregation would become necessary if the requirement 
 - Maintain running counts per `eventType`.
 - Emit an alert if more than N events arrive within T seconds.
 - Pre-aggregate into 5-minute buckets and store those aggregates.
+
+This repository includes one such real-time analytic as a Flink windowing demo: a 5-minute tumbling-window count per `eventType` is computed in Flink, stored in Postgres (`event_type_counts_5m`), and visualized in Grafana.
 
 ## Error handling and high availability (HA)
 

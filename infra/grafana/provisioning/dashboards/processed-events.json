@@ -1,7 +1,10 @@
 {
   "uid": "processed-events",
   "title": "Processed Events Analytics",
-  "tags": ["memcyco", "assignment"],
+  "tags": [
+    "memcyco",
+    "assignment"
+  ],
   "timezone": "browser",
   "schemaVersion": 39,
   "version": 1,
@@ -15,8 +18,16 @@
       "id": 1,
       "type": "barchart",
       "title": "Count events by type",
-      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 0 },
-      "datasource": { "type": "postgres", "uid": "postgres-warehouse" },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "postgres-warehouse"
+      },
       "targets": [
         {
           "refId": "A",
@@ -42,13 +53,21 @@
       "id": 2,
       "type": "table",
       "title": "Latest processed records (20)",
-      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 0 },
-      "datasource": { "type": "postgres", "uid": "postgres-warehouse" },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "postgres-warehouse"
+      },
       "targets": [
         {
           "refId": "A",
           "format": "table",
-          "rawSql": "SELECT id, event_type, event_time, source, image_object_key, inserted_at\nFROM processed_events\nORDER BY inserted_at DESC\nLIMIT 20;"
+          "rawSql": "SELECT id, event_type, event_time, image_object_key, inserted_at\nFROM processed_events\nORDER BY inserted_at DESC\nLIMIT 20;"
         }
       ],
       "options": {
@@ -68,13 +87,60 @@
       "id": 3,
       "type": "timeseries",
       "title": "Events by hour (by type)",
-      "gridPos": { "h": 10, "w": 24, "x": 0, "y": 9 },
-      "datasource": { "type": "postgres", "uid": "postgres-warehouse" },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "postgres-warehouse"
+      },
       "targets": [
         {
           "refId": "A",
           "format": "time_series",
           "rawSql": "SELECT date_trunc('hour', event_time) AS time,\n       COUNT(*)::bigint AS value,\n       event_type AS metric\nFROM processed_events\nWHERE $__timeFilter(event_time)\nGROUP BY 1, 3\nORDER BY 1;"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Events per 5m window (Flink pre-aggregated)",
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "postgres-warehouse"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawSql": "SELECT window_start AS time,\n       event_count::bigint AS value,\n       event_type AS metric\nFROM event_type_counts_5m\nWHERE $__timeFilter(window_start)\nORDER BY window_start;"
         }
       ],
       "fieldConfig": {

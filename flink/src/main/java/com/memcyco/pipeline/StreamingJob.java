@@ -3,9 +3,12 @@ package com.memcyco.pipeline;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.memcyco.pipeline.sinks.PostgresEventTypeCount5mSink;
 import com.memcyco.pipeline.sinks.PostgresProcessedEventSink;
 import com.memcyco.pipeline.sinks.S3LikeImageSink;
+import com.memcyco.pipeline.types.EventTypeCount5m;
 import com.memcyco.pipeline.types.ProcessedEvent;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -18,6 +21,11 @@ import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+import org.apache.flink.util.Collector;
 
 public class StreamingJob {
   public static void main(String[] args) throws Exception {
@@ -76,15 +84,44 @@ public class StreamingJob {
         })
         .name("parse-json");
 
-    processed
+    DataStream<ProcessedEvent> processedWithWatermarks = processed
+        .assignTimestampsAndWatermarks(
+            WatermarkStrategy
+                .<ProcessedEvent>forBoundedOutOfOrderness(Duration.ofSeconds(10))
+                .withTimestampAssigner((event, timestamp) -> event.getEventTime().toEpochMilli()))
+        .name("event-time-watermarks");
+
+    processedWithWatermarks
         .filter(e -> "IMAGE".equals(e.getEventType()))
         .addSink(new S3LikeImageSink(mapper))
         .name("image-to-minio");
 
-    processed
+    processedWithWatermarks
         .filter(e -> "DATA".equals(e.getEventType()))
         .addSink(new PostgresProcessedEventSink(mapper))
         .name("data-to-postgres");
+
+    processedWithWatermarks
+        .keyBy(ProcessedEvent::getEventType)
+        .window(TumblingEventTimeWindows.of(Time.minutes(5)))
+        .process(new ProcessWindowFunction<ProcessedEvent, EventTypeCount5m, String, TimeWindow>() {
+          @Override
+          public void process(String key, Context context, Iterable<ProcessedEvent> elements,
+              Collector<EventTypeCount5m> out) {
+            long count = 0;
+            for (ProcessedEvent ignored : elements) {
+              count++;
+            }
+            out.collect(new EventTypeCount5m(
+                Instant.ofEpochMilli(context.window().getStart()),
+                Instant.ofEpochMilli(context.window().getEnd()),
+                key,
+                count));
+          }
+        })
+        .name("count-by-type-5m")
+        .addSink(new PostgresEventTypeCount5mSink())
+        .name("counts-5m-to-postgres");
 
     env.execute("Kafka->Flink->(MinIO,Postgres)");
   }
