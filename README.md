@@ -17,21 +17,19 @@ This project is a local, Docker Compose–based real-time data pipeline:
 ![Data Pipeline Architecture](docs/architecture.svg)
 
 - **frontend**: React + Vite built and served via Nginx
+  - URL: http://localhost:3000
 - **backend**: Spring Boot API that [receives](backend/src/main/java/com/memcyco/backend/api/EventController.java) requests, [validates](backend/src/main/java/com/memcyco/backend/model/EventRequest.java) input, and [publishes](backend/src/main/java/com/memcyco/backend/kafka/EventProducer.java) events to Kafka
+  - URL: http://localhost:8080
 - **kafka**: Kafka (KRaft mode, i.e. no ZooKeeper) + Kafka UI
+  - URL: http://localhost:8088
 - **flink**: Flink JobManager ([docker-compose.yml#L125-L147](docker-compose.yml#L125-L147)) / TaskManager ([docker-compose.yml#L148-L160](docker-compose.yml#L148-L160)) plus job submitter ([docker-compose.yml#L161-L186](docker-compose.yml#L161-L186)) that runs the streaming job ([StreamingJob.java](flink/src/main/java/com/memcyco/pipeline/StreamingJob.java), built via [flink/pom.xml](flink/pom.xml))
+  - URL: http://localhost:8081
 - **minio**: local S3-compatible object storage
+  - Console: http://localhost:9001 (user: `minio`, pass: `minio123`)
 - **postgres**: analytics database simulating a data warehouse
-
-## Services / URLs
-
-- Frontend UI: http://localhost:3000
-- Backend API: http://localhost:8080
-- Kafka UI: http://localhost:8088
-- Flink UI: http://localhost:8081
-- MinIO Console: http://localhost:9001 (user: `minio`, pass: `minio123`)
-- Postgres: localhost:5432 (db: `warehouse`, user: `postgres`, pass: `postgres`)
-- Grafana: http://localhost:3001 (user: `admin`, pass: `admin`)
+  - Conn: localhost:5432 (db: `warehouse`, user: `postgres`, pass: `postgres`)
+- **grafana**: dashboards for Postgres analytics (pre-provisioned)
+  - URL: http://localhost:3001 (user: `admin`, pass: `admin`)
 
 ## How to run
 
@@ -95,7 +93,7 @@ Access it at http://localhost:3001 (user: `admin`, pass: `admin`). Then open:
 
 ## Notes / decisions
 
-- Events are serialized as JSON strings in Kafka. (To view events: see [Services / URLs](#services--urls) and open Kafka UI topic `events`.)
+- Events are serialized as JSON strings in Kafka. (To view events: see [Architecture](#architecture) and open Kafka UI topic `events`.)
 - A single Kafka topic (`events`) is used to keep the pipeline minimal and because both event types share the same lifecycle (ingest -> process -> sink). It makes sense to split topics when:
   - You need different retention/compaction policies per event type.
   - You want independent scaling/quotas/ACLs per event type (e.g. high-volume `IMAGE` vs low-volume `DATA`).
@@ -106,7 +104,7 @@ Access it at http://localhost:3001 (user: `admin`, pass: `admin`). Then open:
   - The backend can also do lightweight checks for `IMAGE` URLs (e.g. non-empty, valid URL syntax, allowed schemes), but it should avoid heavy validation (fetching the URL, checking content-type/size) because that adds latency, can be flaky, and couples ingestion to external availability.
   - Flink is responsible for runtime validation/handling during processing (e.g. attempting to fetch the image, dealing with HTTP failures/timeouts, and deciding whether to drop/route to a DLQ if you add one).
 - The Flink job uses routing based on `eventType` and writes to two different sinks (Postgres for `DATA`, MinIO for `IMAGE`).
-- MinIO bucket `images` is created by `minio-init` on startup. (To browse stored images: see [Services / URLs](#services--urls).)
+- MinIO bucket `images` is created by `minio-init` on startup. (To browse stored images: see [Architecture](#architecture).)
 
 ## Why Flink (and when windows would be needed)
 
