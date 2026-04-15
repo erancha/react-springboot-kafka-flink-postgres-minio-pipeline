@@ -101,11 +101,18 @@
         {
           "refId": "A",
           "format": "time_series",
-          "rawSql": "SELECT date_trunc('hour', event_time) AS time,\n       COUNT(*)::bigint AS value,\n       event_type AS metric\nFROM processed_events\nWHERE $__timeFilter(event_time)\nGROUP BY 1, 3\nORDER BY 1;"
+          "interval": "1h",
+          "intervalMs": 3600000,
+          "rawSql": "SELECT $__timeGroupAlias(event_time, '1h'),\n       COUNT(*)::bigint AS value,\n       event_type AS metric\nFROM processed_events\nWHERE $__timeFilter(event_time)\nGROUP BY 1, 3\nORDER BY 1;"
         }
       ],
       "fieldConfig": {
         "defaults": {
+          "custom": {
+            "showPoints": "always",
+            "pointSize": 6,
+            "lineWidth": 0
+          },
           "unit": "none",
           "decimals": 0
         },
