@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 550" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .box { fill: #f5f5f5; stroke: #333; stroke-width: 2; }
@@ -23,7 +23,7 @@
       <polygon points="0 0, 10 3, 0 6" fill="#4ecdc4"/>
     </marker>
   </defs>
-  <rect width="1200" height="800" fill="#ffffff"/>
+  <rect width="1192.89" height="546.193" fill="#ffffff" style=""/>
   <text x="600" y="30" class="title" text-anchor="middle" font-size="20" style="white-space: pre;">Real-time Data Pipeline Architecture</text>
   <g id="ingestion-layer">
     <rect x="50" y="80" width="140" height="80" class="ingestion" rx="5"/>
@@ -37,17 +37,21 @@
     <path d="M 190 120 L 330 120" class="arrow"/>
     <text x="210" y="115" class="subtitle" style="white-space: pre;">POST /api/events</text>
   </g>
-  <rect x="200" y="240" width="200" height="100" class="service-box" rx="5"/>
-  <text x="300" y="270" class="title" text-anchor="middle" style="white-space: pre;">Apache Kafka</text>
-  <text x="300" y="295" class="subtitle" text-anchor="middle" style="white-space: pre;">KRaft Mode (no ZooKeeper)</text>
-  <text x="300" y="320" class="subtitle" text-anchor="middle" style="white-space: pre;">Topic: events</text>
-  <rect x="480" y="260" width="120" height="60" class="box" rx="5"/>
-  <text x="540" y="290" class="title" text-anchor="middle" style="white-space: pre;">Kafka UI</text>
-  <text x="540" y="310" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8088</text>
-  <path d="M 400 160 L 300 240" class="event-arrow"/>
-  <text x="361.32" y="209.061" class="subtitle" fill="#ff6b6b" style="white-space: pre; font-size: 12px;" transform="matrix(1, -0.717421, 0, 1, -23.350254, 281.025787)">JSON Events</text>
-  <path d="M 400 290 L 480 290" class="arrow"/>
-  <g transform="matrix(1, 0, 0, 1, -4.060914, 17.258883)">
+  <g transform="matrix(1, 0, 0, 1, 421.319794, -171.573608)">
+    <rect x="200" y="240" width="200" height="100" class="service-box" rx="5"/>
+    <text x="300" y="270" class="title" text-anchor="middle" style="white-space: pre;">Apache Kafka</text>
+    <text x="300" y="295" class="subtitle" text-anchor="middle" style="white-space: pre;">KRaft Mode (no ZooKeeper)</text>
+    <text x="300" y="320" class="subtitle" text-anchor="middle" style="white-space: pre;">Topic: events</text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 422.335022, -188.832489)">
+    <rect x="480" y="260" width="120" height="60" class="box" rx="5"/>
+    <text x="540" y="290" class="title" text-anchor="middle" style="white-space: pre;">Kafka UI</text>
+    <text x="540" y="310" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8088</text>
+  </g>
+  <path d="M 621.827 118.173 L 471.066 119.391" class="event-arrow" style="transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000053, 0.000011)"/>
+  <text x="361.32" y="209.061" class="subtitle" fill="#ff6b6b" style="white-space: pre; font-size: 12px; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(1.230597, 0.018037, -0.59477, 0.803896, 147.208115, -94.497818)">JSON Events</text>
+  <path d="M 822.335 109.289 L 902.335 109.289" class="arrow"/>
+  <g transform="matrix(1, 0, 0, 1, 505.58374, -160.406082)">
     <g>
       <g>
         <rect x="38.274" y="455.076" width="97.361" height="74.924" class="service-box" rx="5" style=""/>
@@ -57,7 +61,7 @@
     <text x="90" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">JobManager</text>
     <text x="90" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8081</text>
   </g>
-  <g transform="matrix(1, 0, 0, 1, -45.68528, 20.304567)">
+  <g transform="matrix(1, 0, 0, 1, 368.527893, -159.390869)">
     <g>
       <g>
         <g>
@@ -73,57 +77,41 @@
     <text x="490" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">TaskManager</text>
     <text x="490" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">2 task slots</text>
   </g>
-  <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5"/>
-  <text x="290" y="395" class="title" text-anchor="middle" style="white-space: pre;">StreamingJob</text>
-  <text x="290" y="415" class="subtitle" text-anchor="middle" style="white-space: pre;">(Kafka → Route → Sinks)</text>
-  <path d="M 300 340 L 290 370" class="arrow"/>
-  <text x="315" y="355" class="subtitle" style="white-space: pre;">consume</text>
-  <rect x="50" y="600" width="140" height="100" class="sink" rx="5"/>
-  <text x="120" y="630" class="title" text-anchor="middle" style="white-space: pre;">MinIO</text>
-  <text x="120" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">S3-compatible</text>
-  <text x="120" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Bucket: images</text>
-  <text x="120" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Ports 9000/9001</text>
-  <path d="M 200 420 Q 150 500 120 600" class="data-arrow"/>
-  <text x="82.132" y="453.3" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">IMAGE events</text>
-  <rect x="300" y="600" width="140" height="100" class="sink" rx="5"/>
-  <text x="370" y="630" class="title" text-anchor="middle" style="white-space: pre;">PostgreSQL</text>
-  <text x="370" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">Database: warehouse</text>
-  <text x="370" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Table: processed_events</text>
-  <text x="370" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 5432</text>
-  <path d="M 320 420 Q 350 500 370 600" class="data-arrow"/>
-  <text x="336.954" y="453.299" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">DATA events</text>
-  <g transform="matrix(1, 0, 0, 1, 34.517765, -1.015228)">
-    <g id="legend">
-      <rect x="550" y="400" width="600" height="320" fill="none" stroke="#ccc" stroke-width="1" rx="5"/>
-      <text x="570" y="425" class="title" style="white-space: pre;">Event Types &amp; Routing</text>
-      <rect x="570" y="450" width="270" height="142.183" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3" style=""/>
-      <text x="590" y="475" class="title" style="white-space: pre;">DATA Event</text>
-      <text x="590" y="500" class="text" style="white-space: pre;">{ eventType: "DATA",</text>
-      <text x="590" y="520" class="text" style="white-space: pre;">payload: { ... } }</text>
-      <text x="590" y="545" class="subtitle" style="white-space: pre;">↓ Stored in PostgreSQL</text>
-      <text x="590" y="565" class="subtitle" style="white-space: pre;">✓ Normalized payload</text>
-      <text x="590" y="585" class="subtitle" style="white-space: pre;">✓ event_time, source indexed</text>
-      <rect x="871.168" y="450" width="258.832" height="139.137" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1" rx="3" style=""/>
-      <text x="880" y="475" class="title" style="white-space: pre;">IMAGE Event</text>
-      <text x="880" y="500" class="text" style="white-space: pre;">{ eventType: "IMAGE",</text>
-      <text x="880" y="520" class="text" style="white-space: pre;">  imageUrl: "..." }</text>
-      <text x="880" y="545" class="subtitle" style="white-space: pre;">↓ Stored in MinIO</text>
-      <text x="880" y="565" class="subtitle" style="white-space: pre;">✓ Path: images/{date}/{id}</text>
-      <text x="880" y="585" class="subtitle" style="white-space: pre;">✓ Fetched from URL</text>
-      <g/>
-      <g transform="matrix(1, 0, 0, 1, -1.015228, 11.167513)">
-        <rect x="570" y="600" width="560" height="100" fill="#f0f8ff" stroke="#0066cc" stroke-width="1" rx="3"/>
-        <text x="590" y="625" class="title" fill="#0066cc" style="white-space: pre;">Data Flow &amp; Key Points</text>
-        <text x="590" y="650" class="text" style="white-space: pre;">• Partition key: event id → ordering preserved per event, parallelism across events</text>
-        <text x="590" y="670" class="text" style="white-space: pre;">• Backend validates structure; Flink handles runtime processing/failures</text>
-        <text x="590" y="690" class="text" style="white-space: pre;">• Both sinks write idempotently: Postgres unique constraint + MinIO key-based</text>
+  <g transform="matrix(1, 0, 0, 1, 429.44162, -163.451767)">
+    <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5"/>
+    <g>
+      <text x="290" y="395" class="title" text-anchor="middle" style="white-space: pre;">StreamingJob</text>
+    </g>
+    <text x="290" y="415" class="subtitle" text-anchor="middle" style="white-space: pre;">(Kafka → Route → Sinks)</text>
+  </g>
+  <path d="M 724.365 173.503 L 714.365 203.503" class="arrow"/>
+  <text x="658.147" y="194.594" class="subtitle" style="white-space: pre; font-size: 12px;">consume</text>
+  <g transform="matrix(1, 0, 0, 1, 522.842651, -176.64975)">
+    <rect x="50" y="600" width="140" height="100" class="sink" rx="5"/>
+    <text x="120" y="630" class="title" text-anchor="middle" style="white-space: pre;">MinIO</text>
+    <text x="120" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">S3-compatible</text>
+    <text x="120" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Bucket: images</text>
+    <text x="120" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Ports 9000/9001</text>
+  </g>
+  <path d="M 683.249 258.579 C 664.721 307.399 649.899 362.324 638.782 423.351" class="data-arrow" style=""/>
+  <text x="570.457" y="282.741" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">IMAGE events</text>
+  <g transform="matrix(1, 0, 0, 1, 449.746185, -176.64975)">
+    <rect x="300" y="600" width="140" height="100" class="sink" rx="5"/>
+    <text x="370" y="630" class="title" text-anchor="middle" style="white-space: pre;">PostgreSQL</text>
+    <text x="370" y="655" class="subtitle" text-anchor="middle" style="white-space: pre;">Database: warehouse</text>
+    <text x="370" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Table: processed_events</text>
+    <text x="370" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 5432</text>
+  </g>
+  <path d="M 751.472 260.609 C 766.193 308.227 778.46 361.797 788.274 421.32" class="data-arrow" style=""/>
+  <text x="765.381" y="281.726" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">DATA events</text>
+  <g transform="matrix(1, 0, 0, 1, 385.786804, -60.913708)">
+    <g>
+      <g>
+        <rect x="650.812" y="492.132" width="140" height="81.726" class="sink" rx="5" style="stroke-width: 2;"/>
       </g>
     </g>
+    <text x="722.656" y="518.274" class="title" text-anchor="middle" style="white-space: pre; stroke-width: 1; font-size: 16px;">Grafana</text>
+    <text x="723.646" y="544.163" class="subtitle" text-anchor="middle" style="white-space: pre; stroke-width: 1; font-size: 12px;">Post-hoc and  real-time<tspan x="723.64599609375" dy="1em">​</tspan>analytics</text>
   </g>
-  <g transform="matrix(1, 0, 0, 1, -28.426395, 17.258883)">
-    <g id="details">
-      <text x="50" y="740" class="title" style="white-space: pre;">Technology Stack</text>
-      <text x="50" y="765" class="text" style="white-space: pre;">Backend: Spring Boot 3.3.3 (Java 21) | Frontend: React 18 + Vite | Flink: 1.18.1 (Java 17) | All: Docker Compose</text>
-    </g>
-  </g>
+  <path d="M 889.72 471.429 C 948.299 471.519 997.115 471.62 1036.17 471.732" class="data-arrow" style="stroke-width: 2; transform-box: fill-box; transform-origin: 50% 50%;"/>
 </svg>

@@ -71,6 +71,21 @@ services:
       timeout: 5s
       retries: 15
 
+  grafana:
+    image: grafana/grafana-oss:11.0.0
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   # MinIO provides local S3-compatible object storage for IMAGE event outputs.
   minio:
     image: minio/minio:latest
@@ -199,3 +214,4 @@ services:
 volumes:
   postgres_data:
   minio_data:
+  grafana_data:

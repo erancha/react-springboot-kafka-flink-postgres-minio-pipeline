@@ -29,6 +29,7 @@ This project is a local, Docker Compose–based real-time data pipeline:
 - Backend API: http://localhost:8080
 - Kafka UI: http://localhost:8088
 - Flink UI: http://localhost:8081
+- Grafana: http://localhost:3001 (user: `admin`, pass: `admin`)
 - MinIO Console: http://localhost:9001 (user: `minio`, pass: `minio123`)
 - Postgres: localhost:5432 (db: `warehouse`, user: `postgres`, pass: `postgres`)
 
@@ -77,6 +78,20 @@ Connect to Postgres and run:
 ```
 
 See [samples/analytics.sql](samples/analytics.sql).
+
+## Grafana dashboard (same analytics queries)
+
+Grafana is included in `docker-compose.yml` and is pre-provisioned with:
+
+- A Postgres datasource pointing to the local `warehouse` database
+- A dashboard named **Processed Events Analytics** that visualizes the same queries as [samples/analytics.sql](samples/analytics.sql):
+  - Count events by type
+  - Latest processed records (20)
+  - Events by hour (by type)
+
+Access it at http://localhost:3001 (user: `admin`, pass: `admin`). Then open:
+
+- Dashboards -> Browse -> **Processed Events Analytics**
 
 ## Notes / decisions
 
