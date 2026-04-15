@@ -1,4 +1,6 @@
-# Real-time Data Pipeline (UI -> API -> Kafka -> Flink -> MinIO/Postgres)
+# Real-time Data Pipeline
+
+## UI -> Spring Boot API -> Kafka -> Flink -> MinIO/Postgres
 
 ## Overview
 
