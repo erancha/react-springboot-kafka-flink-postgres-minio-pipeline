@@ -14,6 +14,8 @@ This project is a local, Docker Compose–based real-time data pipeline:
 
 ## Architecture
 
+![Data Pipeline Architecture](docs/architecture.svg)
+
 - **frontend**: React + Vite built and served via Nginx
 - **backend**: Spring Boot API that [receives](backend/src/main/java/com/memcyco/backend/api/EventController.java) requests, [validates](backend/src/main/java/com/memcyco/backend/model/EventRequest.java) input, and [publishes](backend/src/main/java/com/memcyco/backend/kafka/EventProducer.java) events to Kafka
 - **kafka**: Kafka (KRaft mode, i.e. no ZooKeeper) + Kafka UI
