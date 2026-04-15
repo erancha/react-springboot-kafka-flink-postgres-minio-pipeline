@@ -48,12 +48,12 @@
   <g transform="matrix(1, 0, 0, 1, 505.58374, -160.406082)">
     <g>
       <g>
-        <rect x="38.274" y="455.076" width="97.361" height="74.924" class="service-box" rx="5" style=""/>
+        <rect x="38.274" y="455.076" width="97.361" height="74.924" class="service-box" rx="5" style="stroke: rgb(205, 142, 244);"/>
       </g>
     </g>
-    <text x="90" y="480" class="title" text-anchor="middle" style="white-space: pre;">Flink</text>
-    <text x="90" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">JobManager</text>
-    <text x="90" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8081</text>
+    <text class="title" style="stroke: rgb(205, 142, 244); text-anchor: middle; white-space: pre;" x="90" y="480">Flink</text>
+    <text class="subtitle" style="stroke: rgb(205, 142, 244); text-anchor: middle; white-space: pre;" x="90" y="500">JobManager</text>
+    <text class="subtitle" style="stroke: rgb(205, 142, 244); text-anchor: middle; white-space: pre;" x="90" y="520">Port 8081</text>
   </g>
   <g transform="matrix(1, 0, 0, 1, 368.527893, -159.390869)">
     <g>
@@ -61,25 +61,25 @@
         <g>
           <g>
             <g>
-              <rect x="420" y="450" width="140" height="80" class="service-box" rx="5"/>
+              <rect x="420" y="450" width="140" height="80" class="service-box" rx="5" style="stroke: rgb(224, 113, 245);"/>
             </g>
           </g>
         </g>
       </g>
     </g>
-    <text x="490" y="480" class="title" text-anchor="middle" style="white-space: pre;">Flink</text>
-    <text x="490" y="500" class="subtitle" text-anchor="middle" style="white-space: pre;">TaskManager</text>
-    <text x="490" y="520" class="subtitle" text-anchor="middle" style="white-space: pre;">2 task slots</text>
+    <text class="title" style="stroke: rgb(224, 113, 245); text-anchor: middle; white-space: pre;" x="490" y="480">Flink</text>
+    <text class="subtitle" style="stroke: rgb(224, 113, 245); text-anchor: middle; white-space: pre;" x="490" y="500">TaskManager</text>
+    <text class="subtitle" style="stroke: rgb(224, 113, 245); text-anchor: middle; white-space: pre;" x="490" y="520">2 task slots</text>
   </g>
   <g transform="matrix(1, 0, 0, 1, 429.44162, -163.451767)">
-    <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5"/>
+    <rect x="200" y="370" width="180" height="50" class="service-box" rx="5" stroke-dasharray="5,5" style="stroke: rgb(205, 142, 244);"/>
     <g>
-      <text x="290" y="395" class="title" text-anchor="middle" style="white-space: pre;">StreamingJob</text>
+      <text class="title" style="stroke: rgb(205, 142, 244); text-anchor: middle; white-space: pre;" x="290" y="395">StreamingJob</text>
     </g>
-    <text x="290" y="415" class="subtitle" text-anchor="middle" style="white-space: pre;">(Kafka → Route → Sinks)</text>
+    <text class="subtitle" style="stroke: rgb(205, 142, 244); text-anchor: middle; white-space: pre;" x="290" y="415">(Kafka → Route → Sinks)</text>
   </g>
-  <path d="M 724.365 173.503 L 714.365 203.503" class="arrow"/>
-  <text x="658.147" y="194.594" class="subtitle" style="white-space: pre; font-size: 12px;">consume</text>
+  <path d="M 727.855 170.711 L 712.969 202.805" class="arrow" style="transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(0.897705, -0.440597, 0.440597, 0.897705, -0.000007, -0.000016)"/>
+  <text class="subtitle" style="stroke: rgb(232, 130, 252); white-space: pre;" x="664.429" y="200.178">consume</text>
   <g transform="matrix(1, 0, 0, 1, 522.842651, -176.64975)">
     <rect x="50" y="600" width="140" height="100" class="sink" rx="5"/>
     <text x="120" y="630" class="title" text-anchor="middle" style="white-space: pre;">MinIO</text>
@@ -87,8 +87,8 @@
     <text x="120" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Bucket: images</text>
     <text x="120" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Ports 9000/9001</text>
   </g>
-  <path d="M 683.249 258.579 C 664.721 307.399 649.899 362.324 638.782 423.351" class="data-arrow" style=""/>
-  <text x="570.457" y="282.741" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">IMAGE events</text>
+  <path d="M 683.249 258.579 C 664.721 307.399 649.899 362.324 638.782 423.351" class="data-arrow" style="stroke: rgb(205, 142, 244);"/>
+  <text class="subtitle" style="font-weight: 700; stroke: rgb(217, 164, 247); white-space: pre;" x="570.457" y="282.741">IMAGE events</text>
   <g transform="matrix(1, 0, 0, 1, 449.746185, -176.64975)">
     <rect x="300" y="600" width="140" height="100" class="sink" rx="5"/>
     <text x="370" y="630" class="title" text-anchor="middle" style="white-space: pre;">PostgreSQL</text>
@@ -96,16 +96,16 @@
     <text x="370" y="675" class="subtitle" text-anchor="middle" style="white-space: pre;">Table: processed_events</text>
     <text x="370" y="695" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 5432</text>
   </g>
-  <path d="M 751.472 260.609 C 766.193 308.227 778.46 361.797 788.274 421.32" class="data-arrow" style=""/>
-  <text x="765.381" y="281.726" class="subtitle" fill="#4ecdc4" font-weight="bold" style="white-space: pre; font-size: 12px;">DATA events</text>
+  <path d="M 751.472 260.609 C 766.193 308.227 778.46 361.797 788.274 421.32" class="data-arrow" style="stroke: rgb(205, 142, 244);"/>
+  <text class="subtitle" style="font-weight: 700; stroke: rgb(226, 163, 249); white-space: pre;" x="765.381" y="281.726">DATA events</text>
   <g transform="matrix(1, 0, 0, 1, 385.786804, -60.913708)">
     <g>
       <g>
-        <rect x="650.812" y="492.132" width="140" height="81.726" class="sink" rx="5" style="stroke-width: 2;"/>
+        <rect x="650.812" y="492.132" width="140" height="81.726" class="sink" rx="5" style="stroke-width: 2; fill: rgb(228, 247, 149); stroke: rgb(41, 169, 9);"/>
       </g>
     </g>
-    <text x="722.656" y="518.274" class="title" text-anchor="middle" style="white-space: pre; stroke-width: 1; font-size: 16px;">Grafana</text>
-    <text x="723.646" y="544.163" class="subtitle" text-anchor="middle" style="white-space: pre; stroke-width: 1; font-size: 12px;">Post-hoc and  real-time<tspan x="723.64599609375" dy="1em">​</tspan>analytics</text>
+    <text class="title" style="white-space: pre; stroke-width: 1; font-size: 16px;" x="722.656" y="518.274" text-anchor="middle">Grafana</text>
+    <text class="subtitle" style="white-space: pre; stroke-width: 1; font-size: 12px;" text-anchor="middle" y="544.163" x="723.646">Post-hoc and  real-time<tspan x="723.64599609375" dy="1em">​</tspan>analytics</text>
   </g>
   <path d="M 889.72 471.429 C 948.299 471.519 997.115 471.62 1036.17 471.732" class="data-arrow" style="stroke-width: 2; transform-box: fill-box; transform-origin: 50% 50%;"/>
 </svg>
