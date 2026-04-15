@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=common.sh
+source "$SCRIPT_DIR/common.sh"
+
+require_docker
+
+compose ps
+
+echo
+
+echo "UI:           http://localhost:3000"
+echo "Backend API:   http://localhost:8080"
+echo "Kafka UI:      http://localhost:8088"
+echo "Flink UI:      http://localhost:8081"
+echo "MinIO Console: http://localhost:9001"
