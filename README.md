@@ -52,6 +52,7 @@ chmod +x scripts/*.sh
 Additional commands:
 
 ```bash
+./scripts/compare-images.sh # compare image counts in MinIO vs PostgreSQL (direct and Flink-aggregated).
 ./scripts/ps.sh
 ./scripts/logs.sh
 ./scripts/logs.sh --errors
