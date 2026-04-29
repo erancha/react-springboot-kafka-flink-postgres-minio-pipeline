@@ -11,7 +11,7 @@ compose ps
 
 echo
 
-echo "UI:           http://localhost:3000"
+echo "UI:           http://localhost:3030"
 echo "Backend API:   http://localhost:8080"
 echo "Kafka UI:      http://localhost:8088"
 echo "Flink UI:      http://localhost:8081"

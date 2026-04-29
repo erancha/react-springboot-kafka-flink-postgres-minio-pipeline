@@ -26,6 +26,7 @@ All stack operations go through scripts in `scripts/`:
 ```
 
 Building components individually (not normally needed — Docker handles it):
+
 ```bash
 # Backend (Java 21, Maven)
 cd backend && mvn -q -DskipTests package
@@ -40,7 +41,7 @@ cd frontend && npm install && npm run build
 ## Architecture & Data Flow
 
 ```
-React UI (port 3000)
+React UI (port 3030)
     │  POST /api/events
     ▼
 Spring Boot (port 8080)
@@ -61,15 +62,19 @@ The Flink job is submitted by the `flink-job` Docker service at startup and runs
 ## Event Schema
 
 **DATA event** (`samples/data_event.json`):
+
 ```json
 { "eventType": "DATA", "payload": { ... } }
 ```
+
 Stored in `processed_events` table with columns: `id` (UUID), `event_type`, `event_time`, `source`, `payload` (JSONB), `inserted_at`.
 
 **IMAGE event** (`samples/image_event_url.json`):
+
 ```json
 { "eventType": "IMAGE", "imageUrl": "https://..." }
 ```
+
 Or with `imageBase64` + `imageContentType` fields. Flink fetches/decodes and stores in MinIO.
 
 ## Key Design Points
@@ -82,11 +87,11 @@ Or with `imageBase64` + `imageContentType` fields. Flink fetches/decodes and sto
 
 ## Service Credentials (local only)
 
-| Service    | Connection / Credentials |
-|------------|--------------------------|
+| Service    | Connection / Credentials                                        |
+| ---------- | --------------------------------------------------------------- |
 | PostgreSQL | `localhost:5432` db=`warehouse` user=`postgres` pass=`postgres` |
-| MinIO      | `localhost:9000` user=`minio` pass=`minio123` bucket=`images` |
-| Kafka      | `localhost:9092` topic=`events` |
+| MinIO      | `localhost:9000` user=`minio` pass=`minio123` bucket=`images`   |
+| Kafka      | `localhost:9092` topic=`events`                                 |
 
 ## Java Version Notes
 

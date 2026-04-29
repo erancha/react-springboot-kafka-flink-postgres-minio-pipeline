@@ -28,7 +28,7 @@
   <g id="ingestion-layer">
     <rect x="50" y="80" width="140" height="80" class="ingestion" rx="5"/>
     <text x="120" y="110" class="title" text-anchor="middle" style="white-space: pre;">React UI</text>
-    <text x="120" y="130" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 3000</text>
+    <text x="120" y="130" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 3030</text>
     <text x="120" y="150" class="subtitle" text-anchor="middle" style="white-space: pre;">Events</text>
     <rect x="330" y="80" width="140" height="80" class="ingestion" rx="5"/>
     <text x="400" y="110" class="title" text-anchor="middle" style="white-space: pre;">Spring Boot</text>

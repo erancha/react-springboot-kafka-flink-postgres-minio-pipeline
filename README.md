@@ -17,7 +17,7 @@ This project is a local, Docker Compose–based real-time data pipeline:
 ![Data Pipeline Architecture](docs/architecture.svg)
 
 - **frontend**: React + Vite built and served via Nginx
-  - URL: http://localhost:3000
+  - URL: http://localhost:3030
 - **backend**: Spring Boot API that [receives](backend/src/main/java/com/memcyco/backend/api/EventController.java) requests, [validates](backend/src/main/java/com/memcyco/backend/model/EventRequest.java) input, and [publishes](backend/src/main/java/com/memcyco/backend/kafka/EventProducer.java) events to Kafka
   - URL: http://localhost:8080
 - **kafka**: Kafka (KRaft mode, i.e. no ZooKeeper) + Kafka UI
@@ -29,7 +29,7 @@ This project is a local, Docker Compose–based real-time data pipeline:
 - **postgres**: analytics database simulating a data warehouse
   - Conn: localhost:5432 (db: `warehouse`, user: `postgres`, pass: `postgres`)
 - **grafana**: dashboards for Postgres analytics (pre-provisioned)
-  - URL: http://localhost:3001 (user: `admin`, pass: `admin`)
+  - URL: http://localhost:3031 (user: `admin`, pass: `admin`)
 
 ## How to run
 
@@ -58,13 +58,13 @@ Additional commands:
 ./scripts/logs.sh backend
 ./scripts/logs.sh --errors backend
 ./scripts/restart.sh        # rebuilds and restarts the full stack.
-./scripts/down.sh           # stops the stack without removing named volumes.
-./scripts/clean.sh --prune  # stops the stack, removes volumes/orphans, and prunes dangling images.
+./scripts/down.sh           # stops the stack, keeps all volumes (data persists).
+./scripts/clean.sh --prune  # stops the stack, removes all volumes (data lost), removes orphans, and optionally prunes dangling images.
 ```
 
 Then:
 
-- Open UI at http://localhost:3000
+- Open UI at http://localhost:3030
 - Send `DATA` or `IMAGE` events
 
 ## Analytics SQL examples
@@ -87,7 +87,7 @@ Grafana is included in `docker-compose.yml` and is pre-provisioned with:
   - Latest processed records (20)
   - Events by hour (by type)
 
-Access it at http://localhost:3001 (user: `admin`, pass: `admin`). Then open:
+Access it at http://localhost:3031 (user: `admin`, pass: `admin`). Then open:
 
 - Dashboards -> Browse -> **Processed Events Analytics**
 

@@ -9,7 +9,8 @@ require_docker
 
 compose down -v --remove-orphans
 
-# Optional: remove any dangling images from builds
+# Optional: remove any dangling images and volumes from builds
 if [[ "${1:-}" == "--prune" ]]; then
   docker image prune -f
+  docker volume prune -f
 fi

@@ -153,7 +153,7 @@ export default function App() {
       </div>
 
       <div style={{ marginTop: 20, color: '#666', fontSize: 12 }}>
-        UI is served via Nginx on <code>http://localhost:3000</code>. Kafka UI on <code>http://localhost:8088</code>.
+        UI is served via Nginx on <code>http://localhost:3030</code>. Kafka UI on <code>http://localhost:8088</code>.
       </div>
     </div>
   );
