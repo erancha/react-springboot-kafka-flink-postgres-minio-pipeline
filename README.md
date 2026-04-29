@@ -19,7 +19,7 @@ This project is a local, Docker Compose–based real-time data pipeline:
 - **frontend**: React + Vite built and served via Nginx
   - URL: http://localhost:3030
 - **backend**: Spring Boot API that [receives](backend/src/main/java/com/memcyco/backend/api/EventController.java) requests, [validates](backend/src/main/java/com/memcyco/backend/model/EventRequest.java) input, and [publishes](backend/src/main/java/com/memcyco/backend/kafka/EventProducer.java) events to Kafka
-  - URL: http://localhost:8080
+  - URL: http://localhost:8030
 - **kafka**: Kafka (KRaft mode, i.e. no ZooKeeper) + Kafka UI
   - URL: http://localhost:8088
 - **flink**: Flink JobManager ([docker-compose.yml#L125-L147](docker-compose.yml#L125-L147)) / TaskManager ([docker-compose.yml#L148-L160](docker-compose.yml#L148-L160)) plus job submitter ([docker-compose.yml#L161-L186](docker-compose.yml#L161-L186)) that runs the streaming job ([StreamingJob.java](flink/src/main/java/com/memcyco/pipeline/StreamingJob.java), built via [flink/pom.xml](flink/pom.xml))

@@ -33,7 +33,7 @@
     <rect x="330" y="80" width="140" height="80" class="ingestion" rx="5"/>
     <text x="400" y="110" class="title" text-anchor="middle" style="white-space: pre;">Spring Boot</text>
     <text x="400" y="130" class="subtitle" text-anchor="middle" style="white-space: pre;">API</text>
-    <text x="400" y="150" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8080</text>
+    <text x="400" y="150" class="subtitle" text-anchor="middle" style="white-space: pre;">Port 8030</text>
     <path d="M 190 120 L 330 120" class="arrow"/>
     <text x="210" y="115" class="subtitle" style="white-space: pre;">POST /api/events</text>
   </g>

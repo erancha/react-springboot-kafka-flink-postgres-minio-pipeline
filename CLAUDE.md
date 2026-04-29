@@ -44,7 +44,7 @@ cd frontend && npm install && npm run build
 React UI (port 3030)
     │  POST /api/events
     ▼
-Spring Boot (port 8080)
+Spring Boot (port 8030)
     │  validates, publishes JSON to Kafka topic "events"
     ▼
 Kafka (KRaft, port 9092)  ◄──── Kafka UI (port 8088)
@@ -82,7 +82,7 @@ Or with `imageBase64` + `imageContentType` fields. Flink fetches/decodes and sto
 - **Kafka topic `events`**: single topic, event id used as partition key (ordering per-event, parallelism across events)
 - **Backend validation split**: HTTP-level validation (Bean Validation on `EventRequest`) is separate from business validation in `EventController`
 - **Flink routing**: `StreamingJob.java` fans out to two sinks based on `eventType` field — `S3LikeImageSink` and `PostgresProcessedEventSink`
-- **Nginx** (`frontend/nginx.conf`): proxies `/api/` to `backend:8080` in production; Vite dev server (`vite.config.ts`) proxies to `localhost:8080` during local development
+- **Nginx** (`frontend/nginx.conf`): proxies `/api/` to `backend:8030` in production; Vite dev server (`vite.config.ts`) proxies to `localhost:8030` during local development
 - **No ZooKeeper**: Kafka runs in KRaft mode
 
 ## Service Credentials (local only)

@@ -12,7 +12,7 @@ compose ps
 echo
 
 echo "UI:           http://localhost:3030"
-echo "Backend API:   http://localhost:8080"
+echo "Backend API:   http://localhost:8030"
 echo "Kafka UI:      http://localhost:8088"
 echo "Flink UI:      http://localhost:8081"
 echo "MinIO Console: http://localhost:9001"
