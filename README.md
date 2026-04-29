@@ -67,29 +67,41 @@ Then:
 - Open UI at http://localhost:3030
 - Send `DATA` or `IMAGE` events
 
-## Analytics SQL examples
+## Analytics Queries
 
-Connect to Postgres and run:
+All analytics queries are defined in [samples/analytics.sql](samples/analytics.sql) and query PostgreSQL. They differ in _when_ they are computed:
+
+**Post-hoc analytics** (computed at query time):
+
+- Count events by type
+- Retrieve latest records
+- Aggregate by hour
+
+These scan the `processed_events` table and run standard SQL aggregations. Flink is not involved.
+
+**Real-time analytics** (pre-aggregated by Flink):
+
+- 5-minute tumbling-window event count per `eventType` (stored in `event_type_counts_5m`)
+- Flink computes continuously; queries read pre-computed results (no query-time latency)
+
+**Flink windowing behavior:**
+
+The 5-minute tumbling-window aggregation ([StreamingJob.java:104-124](flink/src/main/java/com/memcyco/pipeline/StreamingJob.java)) uses Flink's default behavior: it only emits window results for windows that contain at least one event. Empty windows are not materialized. This means the `event_type_counts_5m` table will only have rows for time periods when events actually arrived. If there are no `DATA` events in a 5-minute window, that window will not appear in the results, even if the same period had `IMAGE` events. This is standard Flink behavior and conserves storage; to include all windows (including empty ones), the job would need explicit late-firing or allowed lateness policies.
+
+### Running the queries:
+
+Via CLI:
 
 ```bash
 ./scripts/sql-file.sh samples/analytics.sql
 ```
 
-See [samples/analytics.sql](samples/analytics.sql).
+Via Grafana dashboard:
+Access [http://localhost:3031](http://localhost:3031/d/processed-events/processed-events-analytics?orgId=1&refresh=10s) (user: `admin`, pass: `admin`), then:
 
-## Grafana dashboard (same analytics queries)
+- Dashboards → Browse → **Processed Events Analytics**
 
-Grafana is included in `docker-compose.yml` and is pre-provisioned with:
-
-- A Postgres datasource pointing to the local `warehouse` database
-- A dashboard named **Processed Events Analytics** that visualizes the same queries as [samples/analytics.sql](samples/analytics.sql):
-  - Count events by type
-  - Latest processed records (20)
-  - Events by hour (by type)
-
-Access it at http://localhost:3031 (user: `admin`, pass: `admin`). Then open:
-
-- Dashboards -> Browse -> **Processed Events Analytics**
+Both CLI and Grafana execute the same SQL against PostgreSQL; the difference is presentation (one-off results vs. live dashboard). The "Flink pre-aggregated" panel reads from `event_type_counts_5m`, while the others query `processed_events` at query time.
 
 ![Grafana dashboard screenshot](docs/Grafana.jpg)
 
@@ -107,24 +119,6 @@ Access it at http://localhost:3031 (user: `admin`, pass: `admin`). Then open:
   - Flink is responsible for runtime validation/handling during processing (e.g. attempting to fetch the image, dealing with HTTP failures/timeouts, and deciding whether to drop/route to a DLQ if you add one).
 - The Flink job uses routing based on `eventType` and writes to two different sinks (Postgres for `DATA`, MinIO for `IMAGE`).
 - MinIO bucket `images` is created by `minio-init` on startup. (To browse stored images: see [Architecture](#architecture).)
-
-## Why Flink (and when windows would be needed)
-
-The SQL in [samples/analytics.sql](samples/analytics.sql) is post-hoc analytics: it runs against stored rows in Postgres, so the aggregations happen at query time and do not require Flink windows.
-
-Flink is still used here because the requirements include a real-time stream processor in the middle of the pipeline:
-
-- It continuously consumes Kafka.
-- It applies streaming business logic (e.g. branch `IMAGE` vs `DATA`, normalize payloads).
-- It writes to two sinks with independent failure handling/backpressure characteristics (object storage + database).
-
-Flink windowing/real-time aggregation would become necessary if the requirement was to compute and store results before querying, for example:
-
-- Maintain running counts per `eventType`.
-- Emit an alert if more than N events arrive within T seconds.
-- Pre-aggregate into 5-minute buckets and store those aggregates.
-
-This repository includes one such real-time analytic as a Flink windowing demo: a 5-minute tumbling-window count per `eventType` is computed in Flink, stored in Postgres (`event_type_counts_5m`), and visualized in Grafana.
 
 ## Error handling and high availability (HA)
 
