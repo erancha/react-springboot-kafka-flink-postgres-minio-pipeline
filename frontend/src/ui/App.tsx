@@ -12,9 +12,13 @@ export default function App() {
   const [sendCount, setSendCount] = useState<number>(1);
 
   useEffect(() => {
-    if (eventType !== 'IMAGE') return;
-    if (sendCount === 1 || sendCount === 10 || sendCount === 100) return;
-    setSendCount(1);
+    if (eventType === 'IMAGE') {
+      if (sendCount === 1 || sendCount === 10 || sendCount === 100 || sendCount === 1000) return;
+      setSendCount(1);
+    } else if (eventType === 'DATA') {
+      if (sendCount === 1 || sendCount === 10 || sendCount === 100 || sendCount === 1000 || sendCount === 10000 || sendCount === 100000) return;
+      setSendCount(1);
+    }
   }, [eventType, sendCount]);
 
   const canSubmit = useMemo(() => {
@@ -105,10 +109,11 @@ export default function App() {
             <option value='1'>1</option>
             <option value='10'>10</option>
             <option value='100'>100</option>
-            {eventType !== 'IMAGE' && (
+            <option value='1000'>1,000</option>
+            {eventType === 'DATA' && (
               <>
-                <option value='1000'>1,000</option>
                 <option value='10000'>10,000</option>
+                <option value='100000'>100,000</option>
               </>
             )}
           </select>
